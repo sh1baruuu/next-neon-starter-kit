@@ -38,7 +38,7 @@ function SharedDataInner({ children }: SharedDataProviderProps) {
     const session = useCookies().get('session');
     const [user, setUser] = useState<UserInfoType | null>(null);
     const { data, refetch } = useQuery<{ user: UserInfoType }>({
-        queryKey: ['session'],
+        queryKey: ['session', session],
         queryFn: async () => api.get<{ user: UserInfoType }>('/api/session'),
         staleTime: Infinity,
         refetchOnMount: false,
